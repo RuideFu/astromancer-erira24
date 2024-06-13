@@ -4,7 +4,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {RcComponent} from './rc/rc.component';
 import {RcService} from "./rc.service";
 import {RouterModule, Routes} from "@angular/router";
-
+import {MatInputModule} from '@angular/material/input';
  
 const routes: Routes = [
     {path: '', component: RcComponent, title: 'Radio Cartographer'}
@@ -17,7 +17,8 @@ const routes: Routes = [
     imports: [
         RouterModule.forChild(routes),
         CommonModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatInputModule
     ],
     exports: [RcComponent, RouterModule],
     providers: [RcService]
