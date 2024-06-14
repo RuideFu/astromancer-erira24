@@ -2,7 +2,11 @@ import { Component, OnDestroy } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {debounceTime, Subject, takeUntil} from "rxjs";
 import {RcService} from "../rc.service";
-import { rfiSubPreset, surfaceModel } from '../rc.service.util';
+import { 
+  rfiSubPreset,
+  surfaceModel,
+  frequencyRangePreset
+} from '../rc.service.util';
 
 @Component({
   selector: 'app-rc',
@@ -10,8 +14,12 @@ import { rfiSubPreset, surfaceModel } from '../rc.service.util';
   styleUrls: ['./rc.component.scss', "../../shared/interface/tools.scss"]
 })
 export class RcComponent implements OnDestroy{
+  frqs = Object.values(frequencyRangePreset);
   RcForm!: FormGroup;
   private destroy$: Subject<any> = new Subject<any>();
+  public isSkipFreq = false;
+
+  checked = false;
 
   constructor(private service: RcService) {
     this.service.interfaceInfo$.pipe(
@@ -31,9 +39,14 @@ export class RcComponent implements OnDestroy{
         minFrequency: new FormControl(this.service.getMinFrequency(), [Validators.required]),
         maxFrequency: new FormControl(this.service.getMaxFrequency(), [Validators.required]),
         skipFrequency: new FormControl(this.service.getSkipFrequency(), [Validators.required]),
-        minFrequencySkip: new FormControl(this.service.getMinFrequencySkip(), [Validators.required]),
-        maxFrequencySkip: new FormControl(this.service.getMaxFrequencySkip(), [Validators.required]),
-
+        minFrequencySkip: new FormControl(
+          { value: this.service.getMinFrequencySkip(), disabled: !this.service.getSkipFrequency() }, 
+          [Validators.required]
+        ),
+        maxFrequencySkip: new FormControl(
+          { value: this.service.getMaxFrequencySkip(), disabled: !this.service.getSkipFrequency() }, 
+          [Validators.required]
+        ),
         oneDBkgSub: new FormControl(this.service.getOneDBkgSub(), [Validators.required]),
         rfiSubPreset: new FormControl(this.service.getRfiSubPreset(), [Validators.required]),
         rfiSubScale: new FormControl(this.service.getRfiSubScale(), [Validators.required]),
@@ -102,9 +115,14 @@ export class RcComponent implements OnDestroy{
       });
 
       this.RcForm.controls['skipFrequency'].valueChanges.pipe(
-        debounceTime(200),
-      ).subscribe(skipFrequency => {
-        this.service.setSkipFrequency(skipFrequency);
+      ).subscribe(checked => {
+        if (checked) {
+          this.RcForm.controls['minFrequencySkip'].enable();
+          this.RcForm.controls['maxFrequencySkip'].enable();
+        } else {
+          this.RcForm.controls['minFrequencySkip'].disable();
+          this.RcForm.controls['maxFrequencySkip'].disable();
+        }
       });
 
       this.RcForm.controls['minFrequencySkip'].valueChanges.pipe(
@@ -164,3 +182,4 @@ export class RcComponent implements OnDestroy{
     this.service.submitForm();
   }
 }
+
