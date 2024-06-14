@@ -2,22 +2,31 @@
     <div class="form-container">
         <div>Info</div>
         <div>Image Processing Basics</div>
-        <div><p class="frqrng">Frequency Range</p>
-            <form class="example-form">
+        <div>
+            <p class="frqrng">Frequency Range</p>
+            <form class="frq-form">
                 <mat-form-field class="frq">
                     <mat-label>Frequency Range Preset</mat-label>
-                    <input matInput>
+                    <mat-select>
+                        <mat-option *ngFor="let frq of frqs" [value]="frq">
+                            {{frq}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field class="frq">
                     <mat-label>Min Frequency (MHz)</mat-label>
-                    <input matInput>
+                    <input matInput placeholder="Ex. x Hz">
                 </mat-form-field>
                 <mat-form-field class="frq">
                     <mat-label>Max Frequency (MHz)</mat-label>
-                    <input matInput>
+                    <input matInput placeholder="Ex. x Hz">
                 </mat-form-field>
+                <mat-card>
+                    <section class="example-section">
+                        <mat-checkbox class="skipfrqs">Skip Frequencies</mat-checkbox>
+                    </section>
+                </mat-card>
             </form>
-
         </div>
         <div>Contaminant Cleaning and Surface Modeling Details</div>
     </div>
