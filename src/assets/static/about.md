@@ -22,6 +22,6 @@ Contact author: [Reed Fu](mailto:rfugithub@outlook.com)
 
 ## Acknowledgements
 
-The Radio Cartographer interface was supported by the efforts of several Educational Research in Radio Astronomy (ERIRA) students: Nicolas Kaplan, Apurwa Khanal, Dane MacFadden, Simran Panda and Ian Sterrett, as well as ERIRA coordinator Donovan Schlekat.
+The Radio Cartographer interface was supported by the efforts of several Educational Research in Radio Astronomy (ERIRA) students: Nicolas Kaplan, Apurwa Khanal, Dane MacFadden, Simran Panda and Ian Sterrett (he who made The Button), as well as ERIRA coordinator Donovan Schlekat.
 
 The original Skynet Plotting Tools were developed by the Skynet team at the University of North Carolina at Chapel Hill, with support from the National Science Foundation.

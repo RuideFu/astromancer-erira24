@@ -212,10 +212,7 @@ export class RcService {
     /** File Methods */
 
     onFileUpload(file: File): void {
-        this.fileParser.data$.subscribe(
-            data => {
-                console.log("File Uploaded")
-            });
+            console.log("File Uploaded")
         this.fileParser.error$.subscribe(
             error => {
                 alert("File Upload Error: " + error);

@@ -19,7 +19,6 @@ export class MyFileParserFITS implements MyFileParserStrategy {
            errorSubject: Subject<MyFileParserErrors>,
            dataSubject: Subject<any> | undefined,
            headerSubject: Subject<any> | undefined): void {
-    errorSubject.next(MyFileParserErrors.STRATEGY);
   }
 
   validateFormat(file: File): boolean {
