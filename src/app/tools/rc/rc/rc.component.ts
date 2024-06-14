@@ -2,7 +2,14 @@ import { Component, OnDestroy } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {debounceTime, Subject, takeUntil} from "rxjs";
 import {RcService} from "../rc.service";
-import { rfiSubPreset, surfaceModel } from '../rc.service.util';
+import { 
+  rfiSubPreset,
+  surfaceModel,
+  channel,
+  spectrum, 
+  gainCalibration,
+  imageCoordinate,
+  timeDelayOption } from '../rc.service.util';
 
 @Component({
   selector: 'app-rc',
@@ -12,7 +19,11 @@ import { rfiSubPreset, surfaceModel } from '../rc.service.util';
 export class RcComponent implements OnDestroy{
   RcForm!: FormGroup;
   private destroy$: Subject<any> = new Subject<any>();
-
+  channels=Object.values(channel);
+  spectrums=Object.values(spectrum);
+  gCals=Object.values(gainCalibration);
+  imgCoords=Object.values(imageCoordinate);
+  tdls=Object.values(timeDelayOption);
   constructor(private service: RcService) {
     this.service.interfaceInfo$.pipe(
       takeUntil(this.destroy$)
