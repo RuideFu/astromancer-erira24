@@ -22,8 +22,16 @@
         <div>Contaminant Cleaning and Surface Modeling Details</div>
     </div>
     <div class="form-container">
-        <div>File Upload</div>
+        <div class="form-container">
+            <h3>Upload Data</h3>
+            <div (click)="fileInput.click()" class="click-zone">
+                <mat-icon class="big-icon">upload</mat-icon>
+                <h4>Click to Browse</h4>
+            </div>
+        </div>
         <div>Uploaded File View and Selection</div>
         <div>Job Submission and Selection</div>
     </div>
 </div>
+
+<input #fileInput (input)="onFileUpload($event)" style="display: none" type="file">

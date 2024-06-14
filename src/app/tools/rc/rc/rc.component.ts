@@ -156,11 +156,18 @@ export class RcComponent implements OnDestroy{
     this.destroy$.complete();
   }
 
+  // Form Methods
+
   resetForm() {
     this.service.resetForm();
   }
 
   submitForm() {
     this.service.submitForm();
+  }
+
+  // File Methods
+  onFileUpload($event: Event) {
+    this.service.onFileUpload(($event as any).target['files'][0]);
   }
 }

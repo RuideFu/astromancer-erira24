@@ -13,6 +13,8 @@ import {
     surfaceModelScale,
     RcInterfaceInfo
 } from "./rc.service.util";
+import {MyFileParser} from "../shared/data/FileParser/FileParser";
+import {FileType} from "../shared/data/FileParser/FileParser.util";
 
 
 @Injectable()
@@ -23,6 +25,8 @@ export class RcService {
     private interfaceInfoSubject: BehaviorSubject<RcInterfaceInfo> = new BehaviorSubject<RcInterfaceInfo>(this.RcInterfaceInfo);
     public interfaceInfo$ = this.interfaceInfoSubject.asObservable();
 
+    private readonly fileParser: MyFileParser = new MyFileParser(FileType.FITS,
+        ['id', 'filter', 'calibrated_mag', 'mag_error', 'ra_hours', 'dec_degs'])
     constructor() {
     }
 
@@ -203,6 +207,20 @@ export class RcService {
         console.log("Form Submitted!")
         console.log("RC Job Info:")
         console.log(this.RcInterfaceInfo);
+    }
+
+    /** File Methods */
+
+    onFileUpload(file: File): void {
+        this.fileParser.data$.subscribe(
+            data => {
+                console.log("File Uploaded")
+            });
+        this.fileParser.error$.subscribe(
+            error => {
+                alert("File Upload Error: " + error);
+            });
+        this.fileParser.readFile(file, true);
     }
 
 }
