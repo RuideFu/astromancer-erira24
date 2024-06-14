@@ -4,34 +4,38 @@
         <div>Image Processing Basics</div>
         <div>
             <p class="frqrng">Frequency Range</p>
+
             <form class="frq-form">
-                <mat-form-field class="frq">
-                    <mat-label>Frequency Range Preset</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let frq of frqs" [value]="frq">
-                            {{frq}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field class="frq">
-                    <mat-label>Min Frequency (MHz)</mat-label>
-                    <input matInput placeholder="Ex. x Hz">
-                </mat-form-field>
-                <mat-form-field class="frq">
-                    <mat-label>Max Frequency (MHz)</mat-label>
-                    <input matInput placeholder="Ex. x Hz">
-                </mat-form-field>
-                <mat-card>
-                    <section class="example-section">
+                <mat-card class="frqcard">
+                    <mat-form-field class="frq">
+                        <mat-label>Frequency Range Preset</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let frq of frqs" [value]="frq">
+                                {{frq}}[]
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="frq">
+                        <mat-label>Min Frequency (MHz)</mat-label>
+                        <input matInput placeholder="Ex. x Hz">
+                    </mat-form-field>
+                    <mat-form-field class="frq">
+                        <mat-label>Max Frequency (MHz)</mat-label>
+                        <input matInput placeholder="Ex. x Hz">
+                    </mat-form-field>
+                </mat-card>
+                <mat-card class="skipfrqcard">
+                    <section>
                         <mat-checkbox class="skipfrqs">Skip Frequencies</mat-checkbox>
                     </section>
                     <mat-form-field class="skipfrq">
                         <mat-label>Min Skip Frequency (MHz)</mat-label>
-                        <input matInput placeholder="Ex. x Hz">
+                        <input matInput placeholder="Ex. x Hz" [disabled]="isSkipFreq">
                     </mat-form-field>
                     <mat-form-field class="skipfrq">
                         <mat-label>Max Skip Frequency (MHz)</mat-label>
-                        <input matInput placeholder="Ex. x Hz">
+                        <input matInput placeholder="Ex. x Hz" [disabled]="isSkipFreq">
                     </mat-form-field>
                 </mat-card>
             </form>
