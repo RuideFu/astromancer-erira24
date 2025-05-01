@@ -11,7 +11,52 @@
             </form>
 
         </div>
-        <div>Image Processing Basics</div>
+        <div>Image Processing Basics
+            <form class="img-proc-form">
+                <mat-card class="img-proc-card">
+                    <mat-form-field class="img-proc">
+                        <mat-label>Channel</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let chnl of channels" [value]="chnl">
+                                {{chnl}}[]
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="img-proc">
+                        <mat-label>Spectrum</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let spect of spec" [value]="spect">
+                                {{spect}}[]
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="img-proc">
+                        <mat-label>Gain Calibration</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let gc of gainCalibration" [value]="gc">
+                                {{gc}}[]
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="img-proc">
+                        <mat-label>Image Coordinate</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let img of imgcoord" [value]="img">
+                                {{img}}[]
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="img-proc">
+                        <mat-label>Time-Delay Option</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let tdo of timedelay" [value]="tdo">
+                                {{tdo}}[]
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-card>
+            </form>
+        </div>
         <div>
             <p class="frqrng">Frequency Range</p>
 

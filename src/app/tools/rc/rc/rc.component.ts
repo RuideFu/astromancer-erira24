@@ -5,7 +5,12 @@ import {RcService} from "../rc.service";
 import { 
   rfiSubPreset,
   surfaceModel,
-  frequencyRangePreset
+  frequencyRangePreset,
+  channel,
+  timeDelayOption,
+  spectrum,
+  gainCalibration,
+  imageCoordinate,
 } from '../rc.service.util';
 
 @Component({
@@ -15,6 +20,11 @@ import {
 })
 export class RcComponent implements OnDestroy{
   frqs = Object.values(frequencyRangePreset);
+  channels = Object.values(channel);
+  gainCalibration = Object.values(gainCalibration);
+  spec = Object.values(spectrum);
+  imgcoord = Object.values(imageCoordinate);
+  timedelay = Object.values(timeDelayOption);
   RcForm!: FormGroup;
   private destroy$: Subject<any> = new Subject<any>();
   public isSkipFreq = false;
